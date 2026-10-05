@@ -2,6 +2,7 @@ using Battleship.API.GameStore;
 using Battleship.API.GameStore.Abstractions;
 using Battleship.Data;
 using Battleship.Data.Services;
+using Battleship.Domain.Factories;
 using Battleship.Domain.Providers;
 using Battleship.Domain.Providers.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -19,8 +20,11 @@ builder.Services.AddDbContext<BattleshipDbContext>(options =>
 );
 
 builder.Services
-    .AddSingleton<IRandomProvider, RandomProvider>()
+    .AddSingleton<GameFactory>()
     .AddSingleton<IGameStore, InMemoryGameStore>()
+    .AddSingleton<IRandomProvider, RandomProvider>();
+
+builder.Services
     .AddScoped<CompletedGameService>();
 
 
@@ -30,6 +34,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint(
+            "/openapi/v1.json",
+            "Battleship API v1");
+    });
 }
 
 app.UseHttpsRedirection();
