@@ -1,13 +1,10 @@
 ﻿using Battleship.Data.Services;
+using Battleship.Data.Tests.TestProviders;
 using Battleship.Domain.Board;
 using Battleship.Domain.Configuration;
 using Battleship.Domain.Ships;
-using Battleship.Domain.Tests.TestProviders;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Battleship.Data.Tests
 {
@@ -29,9 +26,7 @@ namespace Battleship.Data.Tests
 
             var fleet = new[]
             {
-                new FleetItem(
-                    new ShipDefinition("Destroyer", 2),
-                    1)
+                new FleetItem(new ShipDefinition("Destroyer", 2), 1)
             };
 
             var fleetConfiguration = new FleetConfiguration(fleet);
