@@ -1,3 +1,5 @@
+using Battleship.API.GameStore;
+using Battleship.API.GameStore.Abstractions;
 using Battleship.Data;
 using Battleship.Data.Services;
 using Battleship.Domain.Providers;
@@ -18,7 +20,9 @@ builder.Services.AddDbContext<BattleshipDbContext>(options =>
 
 builder.Services
     .AddSingleton<IRandomProvider, RandomProvider>()
-    .AddScoped<CompletedGameService>(); ;
+    .AddSingleton<IGameStore, InMemoryGameStore>()
+    .AddScoped<CompletedGameService>();
+
 
 var app = builder.Build();
 
