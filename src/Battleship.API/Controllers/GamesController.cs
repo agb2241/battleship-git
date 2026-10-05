@@ -30,7 +30,7 @@ namespace Battleship.API.Controllers
 
             _gameStore.Add(game);
 
-            return Ok(new CreateGameResponse(game.Id, game.GameConfiguration.BoardSize));
+            return Ok(new CreateGameResponse(game.Id, game.GameConfiguration.BoardSize, game.GameConfiguration.FleetConfiguration.Fleet.Count));
         }
 
         [HttpGet("{id:guid}")]
