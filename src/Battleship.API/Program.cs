@@ -12,6 +12,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("WebUI", policy =>
+        {
+            policy
+                .WithOrigins("https://localhost:7264")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+    }
+);
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
@@ -44,6 +57,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("WebUI");
 
 app.UseAuthorization();
 

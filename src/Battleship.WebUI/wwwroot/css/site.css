@@ -29,3 +29,38 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/***** Battleship Styling *****/
+#game-board {
+    display: grid;
+    gap: 2px;
+    width: fit-content;
+}
+
+.board-cell {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #666;
+    background: #ddd;
+    cursor: pointer;
+}
+
+    .board-cell:hover {
+        opacity: 0.8;
+    }
+
+    .board-cell.miss {
+        background: #4da6ff;
+    }
+
+    .board-cell.hit {
+        background: #dc3545;
+    }
+
+    .board-cell.sunk {
+        background: #212529;
+    }
+
+    .board-cell:disabled {
+        cursor: default;
+    }

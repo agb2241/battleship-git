@@ -1,5 +1,6 @@
 ﻿using Battleship.Data.Entities;
 using Battleship.Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,6 +35,14 @@ namespace Battleship.Data.Services
             _dbContext.CompletedGameSummaries.Add(summary);
 
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IReadOnlyList<CompletedGameSummary>> GetSummariesAsync()
+        {
+            return await _dbContext.CompletedGameSummaries
+                .AsNoTracking()
+                .OrderByDescending(x => x.CompletedAtUtc)
+                .ToListAsync();
         }
     }
 }

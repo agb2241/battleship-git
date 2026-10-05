@@ -3,7 +3,6 @@ using Battleship.API.Models;
 using Battleship.Data.Services;
 using Battleship.Domain.Board;
 using Battleship.Domain.Factories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Battleship.API.Controllers
@@ -93,6 +92,23 @@ namespace Battleship.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("/api/summaries")]
+        public async Task<ActionResult> GetSummaries()
+        {
+            var summaries = await _completedGameService.GetSummariesAsync();
+
+            var response = summaries
+                .Select(x => new CompletedGameSummaryResponse(
+                    x.GameId,
+                    x.BoardSize,
+                    x.ShipCount,
+                    x.TotalShots,
+                    DateTime.SpecifyKind(x.CompletedAtUtc, DateTimeKind.Utc)))
+                .ToList();
+
+            return Ok(response);
         }
     }
 }
