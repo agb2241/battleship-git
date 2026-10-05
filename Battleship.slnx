@@ -4,4 +4,7 @@
     <Project Path="src/Battleship.Domain/Battleship.Domain.csproj" Id="ef2d3a58-b78d-4a9f-b465-82aff14cae8c" />
     <Project Path="src/Battleship.WebUI/Battleship.WebUI.csproj" Id="15809ae7-6332-4184-a531-eba51a68ef71" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Battleship.Domain.Tests/Battleship.Domain.Tests.csproj" Id="cbc2377e-afbe-4e7a-8aa9-b8cec2e0c179" />
+  </Folder>
 </Solution>
