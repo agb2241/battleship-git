@@ -38,7 +38,7 @@ async function createGame() {
     localStorage.setItem('battleshipGameId', game.gameId);
 
     document.getElementById('shots-fired').textContent = '0';
-    document.getElementById('ships-remaining').textContent = game.numberOfShips;
+    document.getElementById('ships-remaining').textContent = game.shipCount;
     document.getElementById('game-info').classList.remove('d-none');
 
     createBoard();
