@@ -16,6 +16,8 @@ namespace Battleship.Domain
 
         public Game(IRandomProvider randomProvider, GameConfiguration gameConfiguration)
         {
+            Id = Guid.NewGuid();
+
             _randomProvider = randomProvider;
             GameConfiguration = gameConfiguration;
 
@@ -24,6 +26,8 @@ namespace Battleship.Domain
 
             PlaceFleet();
         }
+
+        public Guid Id { get; }
 
         public Gameboard Gameboard { get; }
         public GameConfiguration GameConfiguration { get; }
